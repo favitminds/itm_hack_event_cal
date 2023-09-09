@@ -137,6 +137,7 @@ export type QueryEventCreateDescriptionArgs = {
 };
 
 export type QueryEventCreateImageArgs = {
+  force_update: Scalars["Boolean"]["input"];
   id: Scalars["Int"]["input"];
 };
 
@@ -219,6 +220,7 @@ export type SingleEventQueryQuery = {
 
 export type GenerateAiAssetsQueryVariables = Exact<{
   id: Scalars["Int"]["input"];
+  force_update: Scalars["Boolean"]["input"];
 }>;
 
 export type GenerateAiAssetsQuery = {
@@ -395,6 +397,20 @@ export const GenerateAiAssetsDocument = {
             type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
           },
         },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "force_update" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "Boolean" },
+            },
+          },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -423,6 +439,14 @@ export const GenerateAiAssetsDocument = {
                 value: {
                   kind: "Variable",
                   name: { kind: "Name", value: "id" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "force_update" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "force_update" },
                 },
               },
             ],
@@ -477,9 +501,9 @@ export const SingleEventQueryDoc = gql`
   }
 `;
 export const GenerateAiAssetsDoc = gql`
-  query GenerateAiAssets($id: Int!) {
+  query GenerateAiAssets($id: Int!, $force_update: Boolean!) {
     eventCreateDescription(id: $id)
-    eventCreateImage(id: $id)
+    eventCreateImage(id: $id, force_update: $force_update)
   }
 `;
 export const EventCreateMutation = (
