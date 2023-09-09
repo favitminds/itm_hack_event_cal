@@ -1,7 +1,8 @@
-import { gql } from "@apollo/client";
-import {  } from "../../../graphql/generated";
+import { gql } from "@apollo/client/core";
+import type { Event } from "../../../graphql/generated";
+import { query } from "svelte-apollo";
 
-const createEvent = (event: Event) => {
+const _createEvent = (event: Event) => {
   const testQ = gql`
     query ExampleQuery {
       events {
@@ -16,8 +17,4 @@ const createEvent = (event: Event) => {
   const events = query(testQ);
 };
 
-const getEventsQuery = () => {
-    const getEventQuery = 
-};
-
-export { createEvent, getEventsQuery };
+export { _createEvent };
