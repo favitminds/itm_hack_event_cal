@@ -3,6 +3,8 @@ query EventListQuery {
     id
     Description
     end
+    Title
+    start
     keywords
     ai_image_style_tags
     __typename
