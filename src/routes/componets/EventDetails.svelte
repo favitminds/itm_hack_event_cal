@@ -4,6 +4,7 @@
   export let event: NonNullable<SingleEventQueryQuery["event"]>;
   export let img: string | null | undefined;
   export let ai_desc: string | null | undefined;
+  export let force_update: () => void;
 
   function isSameDate_Naive(date1: Date, date2: Date) {
     return (
@@ -35,6 +36,7 @@
       alt="Cover photo displaying: {event.ai_image_style_tags.join(', ')}"
     />
   </div>
+  <button on:click={force_update}>click me</button>
   <div id="event-info-container">
     <div>
       <h1 class="event-title">{event.Title}</h1>

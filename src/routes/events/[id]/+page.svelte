@@ -15,8 +15,18 @@
   let ai_assets = GenerateAiAssets({
     variables: {
       id: Number(id),
+      force_update: false,
     },
   });
+
+  let rerun_query = () => {
+    GenerateAiAssets({
+      variables: {
+        id: Number(id),
+        force_update: true,
+      },
+    }).subscribe(console.log);
+  };
 </script>
 
 {#if $data.loading}
@@ -28,5 +38,6 @@
     event={$data.data.event}
     img={$ai_assets.data.eventCreateImage}
     ai_desc={$ai_assets.data.eventCreateDescription}
+    force_update={rerun_query}
   />
 {/if}
