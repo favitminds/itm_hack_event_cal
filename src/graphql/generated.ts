@@ -46,8 +46,10 @@ export type Event = {
   Description: Scalars["String"]["output"];
   /** The title of the event */
   Title: Scalars["String"]["output"];
+  ai_description?: Maybe<Scalars["String"]["output"]>;
   /** AI image generation tags */
   ai_image_style_tags: Array<Scalars["String"]["output"]>;
+  ai_title?: Maybe<Scalars["String"]["output"]>;
   /** The end date of the event */
   end: Scalars["DateTime"]["output"];
   id: Scalars["Int"]["output"];
@@ -121,6 +123,7 @@ export type Query = {
   event?: Maybe<Event>;
   eventCreateDescription?: Maybe<Scalars["String"]["output"]>;
   eventCreateImage?: Maybe<Scalars["String"]["output"]>;
+  eventHypeText?: Maybe<Scalars["String"]["output"]>;
   events: Array<Event>;
   location?: Maybe<Location>;
   locations?: Maybe<Array<Maybe<Location>>>;
@@ -138,6 +141,10 @@ export type QueryEventCreateDescriptionArgs = {
 
 export type QueryEventCreateImageArgs = {
   force_update: Scalars["Boolean"]["input"];
+  id: Scalars["Int"]["input"];
+};
+
+export type QueryEventHypeTextArgs = {
   id: Scalars["Int"]["input"];
 };
 
@@ -196,6 +203,8 @@ export type EventListQueryQuery = {
     Title: string;
     start: any;
     keywords: Array<string>;
+    ai_description?: string | null;
+    ai_title?: string | null;
     ai_image_style_tags: Array<string>;
   }>;
 };
@@ -227,6 +236,15 @@ export type GenerateAiAssetsQuery = {
   __typename?: "Query";
   eventCreateDescription?: string | null;
   eventCreateImage?: string | null;
+};
+
+export type GenerateHypeQueryVariables = Exact<{
+  id: Scalars["Int"]["input"];
+}>;
+
+export type GenerateHypeQuery = {
+  __typename?: "Query";
+  eventHypeText?: string | null;
 };
 
 export const EventCreateMutationDocument = {
@@ -311,6 +329,11 @@ export const EventListQueryDocument = {
                 { kind: "Field", name: { kind: "Name", value: "Title" } },
                 { kind: "Field", name: { kind: "Name", value: "start" } },
                 { kind: "Field", name: { kind: "Name", value: "keywords" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "ai_description" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "ai_title" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "ai_image_style_tags" },
@@ -459,6 +482,45 @@ export const GenerateAiAssetsDocument = {
   GenerateAiAssetsQuery,
   GenerateAiAssetsQueryVariables
 >;
+export const GenerateHypeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "GenerateHype" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "eventHypeText" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GenerateHypeQuery, GenerateHypeQueryVariables>;
 
 export const EventCreateMutationDoc = gql`
   mutation EventCreateMutation($arg: createEventArgs!) {
@@ -482,6 +544,8 @@ export const EventListQueryDoc = gql`
       Title
       start
       keywords
+      ai_description
+      ai_title
       ai_image_style_tags
       __typename
     }
@@ -504,6 +568,11 @@ export const GenerateAiAssetsDoc = gql`
   query GenerateAiAssets($id: Int!, $force_update: Boolean!) {
     eventCreateDescription(id: $id)
     eventCreateImage(id: $id, force_update: $force_update)
+  }
+`;
+export const GenerateHypeDoc = gql`
+  query GenerateHype($id: Int!) {
+    eventHypeText(id: $id)
   }
 `;
 export const EventCreateMutation = (
@@ -611,6 +680,38 @@ export const GenerateAiAssets = (
         GenerateAiAssetsQuery,
         GenerateAiAssetsQueryVariables
       >;
+    }
+  >(
+    {
+      data: {} as any,
+      loading: true,
+      error: undefined,
+      networkStatus: 1,
+      query: q,
+    },
+    (set) => {
+      q.subscribe((v: any) => {
+        set({ ...v, query: q });
+      });
+    }
+  );
+  return result;
+};
+
+export const GenerateHype = (
+  options: Omit<WatchQueryOptions<GenerateHypeQueryVariables>, "query">
+): Readable<
+  ApolloQueryResult<GenerateHypeQuery> & {
+    query: ObservableQuery<GenerateHypeQuery, GenerateHypeQueryVariables>;
+  }
+> => {
+  const q = client.watchQuery({
+    query: GenerateHypeDoc,
+    ...options,
+  });
+  var result = readable<
+    ApolloQueryResult<GenerateHypeQuery> & {
+      query: ObservableQuery<GenerateHypeQuery, GenerateHypeQueryVariables>;
     }
   >(
     {

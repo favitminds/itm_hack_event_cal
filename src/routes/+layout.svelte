@@ -1,10 +1,9 @@
 <script>
-  import Header from "./Header.svelte";
   import "./styles.css";
 </script>
 
 <div class="app">
-  <main>
+  <main class="px-32 py-12">
     <slot />
   </main>
 </div>

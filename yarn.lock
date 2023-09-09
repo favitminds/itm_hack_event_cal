@@ -1213,13 +1213,6 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@kitql/client@^0.5.12":
-  version "0.5.12"
-  resolved "https://registry.yarnpkg.com/@kitql/client/-/client-0.5.12.tgz#28cd73cdaab158ab6935a47b12baceed6b756403"
-  integrity sha512-U5QKEWRI/9k1BHCJX6o+OMz/v3Xw+wP7IYVE+10EdMiWd0rglhGCLakP5rQ3GeKl/YeIXTwixPtq8sAkun9S+g==
-  dependencies:
-    "@kitql/helper" "0.3.5"
-
 "@kitql/graphql-codegen@^0.5.4":
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/@kitql/graphql-codegen/-/graphql-codegen-0.5.4.tgz#9d80abc33f297c6daa906e18e174979f38e92293"
@@ -1229,11 +1222,6 @@
     "@graphql-codegen/visitor-plugin-common" "2.9.1"
     auto-bind "5.0.1"
     change-case-all "1.0.14"
-
-"@kitql/helper@0.3.5":
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/@kitql/helper/-/helper-0.3.5.tgz#3754305b04728f48184ec5019d94de2ed4011f12"
-  integrity sha512-nq7naGKnSsQ3KudK5ENDYfGb62Yre6e7suKZxjsfBqIfeh3wkxRFFMpQu0buEKeKZlqwhevVTKqgN1TdKGRyZw==
 
 "@neoconfetti/svelte@^1.0.0":
   version "1.0.0"
@@ -4066,11 +4054,6 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
-
-svelte-apollo@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/svelte-apollo/-/svelte-apollo-0.5.0.tgz#5e8b141e2eaa1453ad9533c1128ce167bb76a78d"
-  integrity sha512-B4RoSAGGeuQS8pgoo5wQ+41DonoEewHkcx6qH6zjsd2nOZNNVETVRLleTph9rRmHuCtXZxvzupNfthWH+lG+9g==
 
 svelte-check@^3.4.3:
   version "3.5.1"

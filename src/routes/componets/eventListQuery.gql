@@ -6,6 +6,8 @@ query EventListQuery {
     Title
     start
     keywords
+    ai_description
+    ai_title
     ai_image_style_tags
     __typename
   }

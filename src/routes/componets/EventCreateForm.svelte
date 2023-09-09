@@ -1,6 +1,7 @@
 <script lang="ts">
   import { createForm } from "svelte-forms-lib";
   import { EventCreateMutation } from "../../graphql/generated";
+  import { redirect } from "@sveltejs/kit";
 
   const the_function = EventCreateMutation;
 
@@ -25,6 +26,10 @@
             ai_image_keywords: ai_image_keywords.split(","),
           },
         },
+      }).then((e) => {
+        if (e.data?.createEvent?.id) {
+          redirect(302, "/events/" + e.data?.createEvent?.id);
+        }
       });
     },
   });

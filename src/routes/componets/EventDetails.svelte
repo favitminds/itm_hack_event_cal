@@ -1,5 +1,8 @@
 <script lang="ts">
-  import type { SingleEventQueryQuery } from "../../graphql/generated";
+  import {
+    GenerateHype,
+    type SingleEventQueryQuery,
+  } from "../../graphql/generated";
 
   export let event: NonNullable<SingleEventQueryQuery["event"]>;
   export let img: string | null | undefined;
@@ -14,11 +17,11 @@
     );
   }
 
-  function hasSameStartAndEndDate(event) {
+  function hasSameStartAndEndDate(event: any) {
     return isSameDate_Naive(new Date(event.start), new Date(event.end));
   }
 
-  function toDateStringOrDateTimeString(date: Date, event) {
+  function toDateStringOrDateTimeString(date: Date, event: any) {
     let myDate = new Date(date);
     if (hasSameStartAndEndDate(event)) {
       return myDate.toLocaleTimeString();
@@ -26,9 +29,19 @@
       return myDate.toLocaleDateString() + " " + myDate.toLocaleTimeString();
     }
   }
+  let generate_hype = () => {
+    GenerateHype({
+      variables: {
+        id: Number(event.id),
+      },
+    }).subscribe((e) => {
+      if (!e.data.eventHypeText) return;
+      alert(e.data.eventHypeText);
+    });
+  };
 </script>
 
-<div id="page-wrapper">
+<div id="page-wrapper" class="absolute top-0 right-0 w-screen h-screen pb-6">
   <div id="cover-photo-bar">
     <img
       id="cover-photo"
@@ -37,6 +50,8 @@
     />
   </div>
   <button on:click={force_update}>click me</button>
+  <button on:click={generate_hype}>generate hype</button>
+
   <div id="event-info-container">
     <div>
       <h1 class="event-title">{event.Title}</h1>

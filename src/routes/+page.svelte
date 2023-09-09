@@ -1,5 +1,4 @@
 <script>
-  import Counter from "./Counter.svelte";
 </script>
 
 <svelte:head>
@@ -7,9 +6,7 @@
   <meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
-  <Counter />
-</section>
+<a href="events"> go to the app please</a>
 
 <style>
   section {

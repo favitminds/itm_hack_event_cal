@@ -8,8 +8,10 @@
   >
     <p>Would you like to create a new event?</p>
     <a
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-auto"
-      href="/events/create">Create event</a
+      type="button"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      data-confirm="Are you sure?"
+      href="/events/create">Yes !</a
     >
   </div>
   <EventList />
