@@ -2,11 +2,18 @@
   import EventList from "../componets/EventList.svelte";
 </script>
 
-Would you like to create a new event?
-
-<a href="/events/create">Create event</a>
-
-<EventList />
+<div class="flex flex-col gap-10">
+  <div
+    class="flex flex-col text-center m-auto p-4 rounded-2xl gap-3 w-full max-w-xs bg-white shadow-md"
+  >
+    <p>Would you like to create a new event?</p>
+    <a
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-auto"
+      href="/events/create">Create event</a
+    >
+  </div>
+  <EventList />
+</div>
 
 <style>
   :root {

@@ -193,6 +193,8 @@ export type EventListQueryQuery = {
     id: number;
     Description: string;
     end: any;
+    Title: string;
+    start: any;
     keywords: Array<string>;
     ai_image_style_tags: Array<string>;
   }>;
@@ -306,6 +308,8 @@ export const EventListQueryDocument = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "Description" } },
                 { kind: "Field", name: { kind: "Name", value: "end" } },
+                { kind: "Field", name: { kind: "Name", value: "Title" } },
+                { kind: "Field", name: { kind: "Name", value: "start" } },
                 { kind: "Field", name: { kind: "Name", value: "keywords" } },
                 {
                   kind: "Field",
@@ -475,6 +479,8 @@ export const EventListQueryDoc = gql`
       id
       Description
       end
+      Title
+      start
       keywords
       ai_image_style_tags
       __typename

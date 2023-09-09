@@ -63,6 +63,25 @@
     placeholder="fantasy,space,scifi"
     bind:value={$form.ai_image_keywords}
   />
+
+  <label for="start">Start date</label>
+  <input
+    type="datetime-local"
+    id="start"
+    name="start"
+    on:change={handleChange}
+    bind:value={$form.start}
+  />
+
+  <label for="end">End date</label>
+  <input
+    type="datetime-local"
+    id="end"
+    name="end"
+    on:change={handleChange}
+    bind:value={$form.end}
+  />
+
   <button type="submit">Submit</button>
 </form>
 
