@@ -51,11 +51,26 @@ export type Location = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  EventJoin?: Maybe<Event>;
+  EventLeave?: Maybe<Event>;
   LocationCreate?: Maybe<Location>;
   LocationDelete?: Maybe<Location>;
+  UserCreate?: Maybe<User>;
   createEvent?: Maybe<Event>;
   deleteEvent?: Maybe<Event>;
   updateEvent?: Maybe<Event>;
+};
+
+
+export type MutationEventJoinArgs = {
+  eventId: Scalars['Int']['input'];
+  userId: Scalars['Int']['input'];
+};
+
+
+export type MutationEventLeaveArgs = {
+  eventId: Scalars['Int']['input'];
+  userId: Scalars['Int']['input'];
 };
 
 
@@ -66,6 +81,12 @@ export type MutationLocationCreateArgs = {
 
 export type MutationLocationDeleteArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type MutationUserCreateArgs = {
+  email: Scalars['String']['input'];
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -90,6 +111,8 @@ export type Query = {
   events?: Maybe<Array<Maybe<Event>>>;
   location?: Maybe<Location>;
   locations?: Maybe<Array<Maybe<Location>>>;
+  user?: Maybe<User>;
+  users: Array<User>;
 };
 
 
@@ -99,6 +122,11 @@ export type QueryEventArgs = {
 
 
 export type QueryLocationArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type QueryUserArgs = {
   id: Scalars['Int']['input'];
 };
 

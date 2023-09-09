@@ -1,37 +1,63 @@
 <script lang="ts">
+  import { gql } from "@apollo/client/core";
+  import { mutation } from "svelte-apollo";
   import { createForm } from "svelte-forms-lib";
-  //   import { createEvent } from "./+page.server";
+  import type { MutationCreateEventArgs } from "../../../graphql/generated";
 
-  const { form, handleChange, handleSubmit } = createForm({
+  const create_event = gql`
+    mutation Mutation($arg: createEventArgs!) {
+      createEvent(arg: $arg) {
+        id
+        Description
+        end
+        start
+        Title
+        keywords
+        ai_image_style_tags
+      }
+    }
+  `;
+
+  const the_function = mutation<any, MutationCreateEventArgs>(create_event);
+
+  const { form, handleChange, handleSubmit } = createForm<
+    MutationCreateEventArgs["arg"]
+  >({
     initialValues: {
-      Description: "",
-      end: "",
-      start: "",
-      Title: "",
-      keywords: [],
-      ai_image_style_tags: [],
+      description: "",
+      end: new Date().toString(),
+      start: new Date().toString(),
+      title: "",
+      keywords: ["default"],
+      ai_image_keywords: ["default"],
+      office: "aarhus",
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values));
+      console.log(values);
+      the_function({
+        variables: {
+          arg: values,
+        },
+      });
     },
   });
 </script>
 
 <form on:submit={handleSubmit}>
-  <label for="Title">Title</label>
+  <label for="title">Title</label>
   <input
-    id="Title"
-    name="Title"
+    id="title"
+    name="title"
     on:change={handleChange}
-    bind:value={$form.Title}
+    bind:value={$form.title}
   />
 
-  <label for="Description">Description</label>
+  <label for="description">Description</label>
   <textarea
-    id="Description"
-    name="Description"
+    id="description"
+    name="description"
     on:change={handleChange}
-    bind:value={$form.Description}
+    bind:value={$form.description}
   />
   <button type="submit">Submit</button>
 </form>

@@ -11,6 +11,7 @@
         end
         start
         Title
+        keywords
       }
     }
   `;
@@ -24,5 +25,5 @@
   <li>ERROR: {$events.error.message}</li>
 {:else}
   data here
-  {$events.data}
+  {JSON.stringify($events.data)}
 {/if}
