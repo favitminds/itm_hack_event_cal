@@ -1,0 +1,16 @@
+query SingleEventQuery($id: Int!) {
+  event(id: $id) {
+    Title
+    id
+    start
+    end
+    Description
+    keywords
+    ai_image_style_tags
+  }
+}
+
+query GenerateAiAssets($id: Int!) {
+  eventCreateDescription(id: $id)
+  eventCreateImage(id: $id)
+}

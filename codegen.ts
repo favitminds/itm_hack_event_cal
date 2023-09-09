@@ -2,14 +2,18 @@ import type { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
   schema: "http://localhost:4000",
+  documents: ["./src/**/*.gql"],
   generates: {
-    "./graphql/generated.ts": {
+    "./src/graphql/generated.ts": {
       plugins: [
         "typescript",
         "typescript-operations",
         "typed-document-node",
-        "@kitql/graphql-codegen",
+        "graphql-codegen-svelte-apollo",
       ],
+      config: {
+        clientPath: "../apolloClient",
+      },
     },
   },
 };

@@ -1,12 +1,70 @@
-<script>
-  import EventList from "../componets/EventList.svelte";
+<script lang="ts">
+  import { createForm } from "svelte-forms-lib";
+  import { EventCreateMutation } from "../../graphql/generated";
+
+  const the_function = EventCreateMutation;
+
+  const { form, handleChange, handleSubmit } = createForm({
+    initialValues: {
+      description: "",
+      end: new Date().toString(),
+      start: new Date().toString(),
+      title: "",
+      keywords: "",
+      ai_image_keywords: "",
+      office: "aarhus",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+      const { keywords, ai_image_keywords, ...rest } = values;
+      the_function({
+        variables: {
+          arg: {
+            ...rest,
+            keywords: keywords.split(","),
+            ai_image_keywords: ai_image_keywords.split(","),
+          },
+        },
+      });
+    },
+  });
 </script>
 
-Would you like to create a new event?
+<form on:submit={handleSubmit}>
+  <label for="title">Title</label>
+  <input
+    id="title"
+    name="title"
+    on:change={handleChange}
+    bind:value={$form.title}
+  />
 
-<a href="/events/create">Create event</a>
+  <label for="description">Description</label>
+  <textarea
+    id="description"
+    name="description"
+    on:change={handleChange}
+    bind:value={$form.description}
+  />
 
-<EventList />
+  <label for="keywords">Keywords</label>
+  <input
+    id="keywords"
+    name="keywords"
+    on:change={handleChange}
+    placeholder="tikibar,party,friendship"
+    bind:value={$form.keywords}
+  />
+  <label for="ai_image_keywords">AI Image Keywords</label>
+  <input
+    id="ai_image_keywords"
+    name="ai_image_keywords"
+    on:change={handleChange}
+    placeholder="fantasy,space,scifi"
+    bind:value={$form.ai_image_keywords}
+  />
+  <button type="submit">Submit</button>
+</form>
 
 <style>
   :root {

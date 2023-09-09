@@ -1,0 +1,11 @@
+mutation EventCreateMutation($arg: createEventArgs!) {
+  createEvent(arg: $arg) {
+    id
+    Description
+    end
+    start
+    Title
+    keywords
+    ai_image_style_tags
+  }
+}

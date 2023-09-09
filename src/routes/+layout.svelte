@@ -1,17 +1,6 @@
 <script>
   import Header from "./Header.svelte";
   import "./styles.css";
-
-  import { ApolloClient, InMemoryCache } from "@apollo/client/core";
-  import { setClient } from "svelte-apollo";
-
-  // 1. Create an Apollo client and pass it to all child components
-  //    (uses svelte's built-in context)
-  const client = new ApolloClient({
-    uri: "http://localhost:4000",
-    cache: new InMemoryCache(),
-  });
-  setClient(client);
 </script>
 
 <div class="app">

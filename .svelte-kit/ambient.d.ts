@@ -121,6 +121,7 @@ declare module '$env/static/private' {
 	export const npm_package_scripts_format: string;
 	export const PWD: string;
 	export const npm_execpath: string;
+	export const npm_package_dependencies__graphql_typed_document_node_core: string;
 	export const CARGO_HOME: string;
 	export const XDG_DATA_DIRS: string;
 	export const STARSHIP_SESSION_KEY: string;
@@ -266,6 +267,7 @@ declare module '$env/dynamic/private' {
 		npm_package_scripts_format: string;
 		PWD: string;
 		npm_execpath: string;
+		npm_package_dependencies__graphql_typed_document_node_core: string;
 		CARGO_HOME: string;
 		XDG_DATA_DIRS: string;
 		STARSHIP_SESSION_KEY: string;

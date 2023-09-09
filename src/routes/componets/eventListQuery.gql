@@ -1,0 +1,10 @@
+query EventListQuery {
+  events {
+    id
+    Description
+    end
+    keywords
+    ai_image_style_tags
+    __typename
+  }
+}
